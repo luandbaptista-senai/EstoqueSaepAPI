@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author digma
  */
 public interface ProdutoRepository extends JpaRepository<Produto, Object>{
-    
+    public Produto findByNome(String nome);
 }
