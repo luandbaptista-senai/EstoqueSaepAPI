@@ -45,7 +45,7 @@ public class ProdutoController {
 
     
     @GetMapping("/{produto}")
-    public Produto porCat(@PathVariable String produto){
+    public Produto porNome(@PathVariable String produto){
     return produtoRepository.findByNome(produto); 
     }
     
