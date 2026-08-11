@@ -4,10 +4,13 @@
  */
 package br.eti.EstoqueSaepAPI.Repository;
 
+import br.eti.EstoqueSaepAPI.domain.model.Movimento;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author digma
  */
-public interface MovimentoRepository {
+public interface MovimentoRepository extends JpaRepository<Movimento, Object>{
     
 }

@@ -6,9 +6,13 @@ package br.eti.EstoqueSaepAPI.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
-import org.hibernate.type.descriptor.DateTimeUtils;
+//import org.hibernate.type.descriptor.LocalDateTime;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,17 +20,18 @@ import org.hibernate.type.descriptor.DateTimeUtils;
  */
 @Entity
 public class Movimento {
-    @Id 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //@ForeignKey
     private Long id_produto;
-    private DateTimeUtils datamovto;
+    private LocalDateTime datamovto;
     private BigDecimal qtd;
 
     public Movimento() {
     }
 
-    public Movimento(Long id, Long id_produto, DateTimeUtils datamovto, BigDecimal qtd) {
+    public Movimento(Long id, Long id_produto, LocalDateTime datamovto, BigDecimal qtd) {
         this.id = id;
         this.id_produto = id_produto;
         this.datamovto = datamovto;
@@ -49,11 +54,11 @@ public class Movimento {
         this.id_produto = id_produto;
     }
 
-    public DateTimeUtils getDatamovto() {
+    public LocalDateTime getDatamovto() {
         return datamovto;
     }
 
-    public void setDatamovto(DateTimeUtils datamovto) {
+    public void setDatamovto(LocalDateTime datamovto) {
         this.datamovto = datamovto;
     }
 

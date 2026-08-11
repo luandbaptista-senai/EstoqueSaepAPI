@@ -4,10 +4,16 @@
  */
 package br.eti.EstoqueSaepAPI.Repository;
 
+import br.eti.EstoqueSaepAPI.domain.model.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author digma
  */
-public interface CategoriaRepository {
-    
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Object>{
+    public Categoria findByCategoria(String categoria);
+    //public Categoria findById(int id);
 }
