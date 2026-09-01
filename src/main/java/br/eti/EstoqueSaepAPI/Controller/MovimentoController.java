@@ -6,8 +6,10 @@ package br.eti.EstoqueSaepAPI.Controller;
 
 import br.eti.EstoqueSaepAPI.Repository.MovimentoRepository;
 import br.eti.EstoqueSaepAPI.Service.MovimentoService;
+import br.eti.EstoqueSaepAPI.domain.dto.MovimentoDTO;
 import br.eti.EstoqueSaepAPI.domain.model.Movimento;
 import jakarta.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -54,11 +55,23 @@ public class MovimentoController {
     return movimentoRepository.findById(id); 
     }
     
+    @GetMapping("/UltimasSaidas")
+    public List<Movimento> UltimasSaidas(){
+    return movimentoRepository.findByQtdLessThanOrderByDatamovtoDesc(BigDecimal.ZERO);
+    }
+    
+    
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Movimento adicionar(@Valid @RequestBody Movimento movimento){
+//        
+//        return movimentoService.salvar(movimento);
+//    }
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Movimento adicionar(@Valid @RequestBody Movimento movimento){
-        
-        return movimentoService.salvar(movimento);
+    //@ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Movimento> AtualizaSaldo(@Valid @RequestBody MovimentoDTO movimentoDTO){
+        Movimento newMovimento = movimentoService.atualizaSaldo(movimentoDTO.getIdProduto(), movimentoDTO.getQuantidade());
+        return ResponseEntity.status(HttpStatus.CREATED).body(newMovimento);
     }
     
     @PutMapping("/{movimentoID}")

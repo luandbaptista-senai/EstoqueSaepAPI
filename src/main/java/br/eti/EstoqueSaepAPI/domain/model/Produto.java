@@ -8,7 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  *
@@ -16,12 +19,38 @@ import java.math.BigDecimal;
  */
 @Entity
 public class Produto {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produto other = (Produto) obj;
+        return Objects.equals(this.id, other.id);
+    }
+    @NotNull
+    @Size(max = 60)
     private String nome;
+    @NotNull
     private Long id_categoria;
+    @NotNull
     private BigDecimal saldo;
+    @NotNull
     private BigDecimal valor_unitario;
 
     public Produto() {
@@ -75,5 +104,8 @@ public class Produto {
         this.valor_unitario = valor_unitario;
     }
     
-    
+public void atualizaSaldo(Double quantidade)    {
+this.saldo= this.saldo.add(BigDecimal.valueOf(quantidade));
+        
+}
 }

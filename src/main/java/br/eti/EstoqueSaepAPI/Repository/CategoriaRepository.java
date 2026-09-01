@@ -4,16 +4,25 @@
  */
 package br.eti.EstoqueSaepAPI.Repository;
 
+import br.eti.EstoqueSaepAPI.domain.dto.CategoriaValorTotalDTO;
 import br.eti.EstoqueSaepAPI.domain.model.Categoria;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author digma
  */
+
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Object>{
     public Categoria findByCategoria(String categoria);
     //public Categoria findById(int id);
+    @Query( "SELECT NEW CategoriaValorTotalDTO(c.categoria, SUM(p.saldo * p.valorUnitario))" +
+            "FROM Categoria c JOIN produto p ON p.cateforia = c" +
+            "GROUP BY c.id, c.categoria"
+    )
+    List<CategoriaValorTotalDTO> calcularValorTotalPorCatViaJPQL();
 }
