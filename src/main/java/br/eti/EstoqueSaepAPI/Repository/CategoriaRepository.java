@@ -20,9 +20,19 @@ import org.springframework.stereotype.Repository;
 public interface CategoriaRepository extends JpaRepository<Categoria, Object>{
     public Categoria findByCategoria(String categoria);
     //public Categoria findById(int id);
-    @Query( "SELECT NEW CategoriaValorTotalDTO(c.categoria, SUM(p.saldo * p.valorUnitario))" +
-            "FROM Categoria c JOIN produto p ON p.cateforia = c" +
-            "GROUP BY c.id, c.categoria"
+    /*@Query(  "SELECT NEW  br.eti.EstoqueSaepAPI.domain.dto.CategoriaValorTotalDTO(c.categoria, SUM(p.saldo * p.valor_unitario))" +
+            "FROM Categoria c JOIN Produto p ON p.id_categoria = c.id " +
+            "GROUP BY c.id, c.categoria" 
+            
+            
+            
+            "SELECT NEW CategoriaValorTotalDTO(c.categoria, SUM(p.saldo * p.valorUnitario)) " +
+"FROM Categoria c JOIN c.produtos p " +
+"GROUP BY c.id, c.categoria"
+            
+            "SELECT NEW br.eti.EstoqueSaepAPI.domain.dto.CategoriaValorTotalDTO(c.categoria, SUM(p.saldo * p.valor_unitario)) " +
+"FROM Categoria c JOIN Produto p ON p.id_categoria = c.id " +
+"GROUP BY c.id, c.categoria"
     )
-    List<CategoriaValorTotalDTO> calcularValorTotalPorCatViaJPQL();
+    List<CategoriaValorTotalDTO> calcularValorTotalPorCatViaJPQL();*/
 }

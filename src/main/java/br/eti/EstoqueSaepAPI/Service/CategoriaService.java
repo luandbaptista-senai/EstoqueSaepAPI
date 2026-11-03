@@ -24,11 +24,11 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository cr;
     
-    public List<CategoriaValorTotalDTO> valorTotalPorCatViaJPQL() {
+    /*public List<CategoriaValorTotalDTO> valorTotalPorCatViaJPQL() {
         //List<CategoriaValorTotalProjection> resultados= cr.calcularValorTotalPorCatViaJPQL();
         List<CategoriaValorTotalDTO> resultados= cr.calcularValorTotalPorCatViaJPQL();
         return resultados.stream().map(proj -> new CategoriaValorTotalDTO(proj.getCategoria(), proj.getValorTotal())).collect(Collectors.toList());
-    }
+    }*/
     
     public Categoria salvar(Categoria categoria) {
     Categoria categoriaExistente = cr.findByCategoria(categoria.getCategoria());

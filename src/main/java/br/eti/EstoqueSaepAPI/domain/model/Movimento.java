@@ -4,6 +4,7 @@
  */
 package br.eti.EstoqueSaepAPI.domain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Movimento {
     //@ForeignKey
     @NotNull
     private Long id_produto;
+    @Column(name = "data_movto")
     @NotNull
     private LocalDateTime datamovto;
     @NotNull

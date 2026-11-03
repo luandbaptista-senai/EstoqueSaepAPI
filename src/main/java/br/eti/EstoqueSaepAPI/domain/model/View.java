@@ -5,6 +5,7 @@
 package br.eti.EstoqueSaepAPI.domain.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -18,7 +19,18 @@ import org.springframework.data.annotation.Immutable;
 @Table(name= "vw_categoria_valor_total")
 @Immutable
 public class View {
-    private  BigInteger id_categoria;
+
+    @Id
+    private Long Id;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+    private BigInteger id_categoria;
     private String categoria;
     private BigDecimal valor_total;
 
